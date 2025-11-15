@@ -20,36 +20,36 @@ export interface Airport {
   /**
    * Identificador del aeropuerto según la fuente de datos original.
    */
-  airport_id: string;
+  airportId: string;
 
   /**
    * Código IATA del aeropuerto (3 letras, comúnmente usado en tickets y vuelos).
    */
-  iata_code: string;
+  iataCode: string;
 
   /**
    * Código IATA de la ciudad en la que se ubica el aeropuerto.
    * Puede ser nulo si no aplica.
    */
-  city_iata_code: string | null;
+  cityIataCode: string | null;
 
   /**
    * Código ICAO del aeropuerto (4 letras, usado por control aéreo).
    * Puede ser nulo.
    */
-  icao_code: string | null;
+  icaoCode: string | null;
 
   /**
    * Código ISO-3166 del país donde se encuentra el aeropuerto.
    * Puede ser nulo.
    */
-  country_iso2: string | null;
+  countryIso2: string | null;
 
   /**
    * Identificador del aeropuerto según GeoNames.
    * Puede ser nulo si no se dispone de esta fuente.
    */
-  geoname_id: string | null;
+  geonameId: string | null;
 
   /**
    * Latitud del aeropuerto en formato de texto.
@@ -66,18 +66,18 @@ export interface Airport {
   /**
    * Nombre oficial del aeropuerto.
    */
-  airport_name: string;
+  airportName: string;
 
   /**
    * Nombre del país donde está ubicado el aeropuerto.
    * Puede ser nulo.
    */
-  country_name: string | null;
+  countryName: string | null;
 
   /**
    * Número telefónico de contacto del aeropuerto (si existe).
    */
-  phone_number: string | null;
+  phoneNumber: string | null;
 
   /**
    * Zona horaria del aeropuerto (por ejemplo: "America/Bogota").

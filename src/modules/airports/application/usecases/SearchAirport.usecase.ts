@@ -1,5 +1,6 @@
 import { ApiAirportResponse, ApiResponse } from "@/core/types";
 import { AirportRepository } from "@/modules/airports/domain/repositories/Airports.repository";
+import { Airport } from "../../domain/entities";
 
 /**
  * Caso de uso responsable de realizar la búsqueda de aeropuertos a
@@ -35,7 +36,7 @@ export class SearchAirportUsecase  {
    * @returns Una promesa que se resuelve con un arreglo de aeropuertos
    *          que coinciden con el criterio.
    */
-  async execute(query: string, options?: {offset: number, limit?: number}): Promise<ApiResponse<ApiAirportResponse | null>> {
+  async execute(query: string, options?: {offset: number, limit?: number}): Promise<ApiResponse<ApiAirportResponse<Airport> | null>> {
     return this.repository.search(query, options);
   }
 }

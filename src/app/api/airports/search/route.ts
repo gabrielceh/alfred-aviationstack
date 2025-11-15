@@ -1,11 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiAirportResponse, ApiResponse } from "@/core/types";
 import { AIRPORTS_DATA } from "@/modules/airports/infrastructure/mocks";
+import { AirportResponse } from "@/modules/airports/infrastructure/models";
 
 
 const airportsData = [...AIRPORTS_DATA];
 
-export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<ApiAirportResponse>>> {
+export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<ApiAirportResponse<AirportResponse>>>> {
   try {
     const { searchParams } = new URL(request.url);
     
@@ -35,10 +36,9 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
       filteredAirports = airportsData.filter((airport) => {
         const nameMatch = airport.airport_name?.toLowerCase().includes(searchLower);
         const iataMatch = airport.iata_code?.toLowerCase().includes(searchLower);
-        const icaoMatch = airport.icao_code?.toLowerCase().includes(searchLower);
         const cityMatch = airport.city_iata_code?.toLowerCase().includes(searchLower);
         
-        return nameMatch || iataMatch || icaoMatch || cityMatch;
+        return nameMatch || iataMatch || cityMatch;
       });
     }
 
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
     const paginatedAirports = filteredAirports.slice(offset, offset + limit);
 
     // Preparar respuesta
-    const dataResponse: ApiAirportResponse = {
+    const dataResponse: ApiAirportResponse<AirportResponse> = {
       pagination: {
         offset,
         limit,
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
       data: paginatedAirports
     };
     
-    const response: ApiResponse<ApiAirportResponse> = {
+    const response: ApiResponse<ApiAirportResponse<AirportResponse>> = {
       status: "success",
       message: "Operación realizada correctamente",
       data: dataResponse

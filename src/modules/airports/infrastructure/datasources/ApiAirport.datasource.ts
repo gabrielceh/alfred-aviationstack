@@ -1,11 +1,12 @@
-import { AxiosService } from "@/config/axios";
 import { ApiAirportResponse, ApiResponse } from "@/core/types";
 import { performApiRequest } from "@/core/utils";
 import { AirportDataSource } from "@/modules/airports/domain/datasources";
 import { Airport } from "@/modules/airports/domain/entities";
+import { AirportResponse } from "../models";
+import { MapAirport } from "../mappers";
 
 export class ApiAirportDataSource implements AirportDataSource{
-  async search(query: string, options?: {offset: number, limit?: number}): Promise<ApiResponse<ApiAirportResponse | null>> {
+  async search(query: string, options?: {offset: number, limit?: number}): Promise<ApiResponse<ApiAirportResponse<Airport> | null>> {
 
       if(!query){
         return {
@@ -18,7 +19,7 @@ export class ApiAirportDataSource implements AirportDataSource{
       const offset = options?.offset || 0;
       const limit = options?.limit || 10;
 
-      const res = await performApiRequest<ApiAirportResponse>({
+      const res = await performApiRequest<ApiAirportResponse<AirportResponse>>({
         path: `/search?search=${query}&offset=${offset}&limit=${limit}`,
         method: 'get',
         errorMessage: 'Error al buscar aeropuertos'
@@ -31,7 +32,10 @@ export class ApiAirportDataSource implements AirportDataSource{
       return {
         message: 'Operación realizada correctamente',
         status: "success",
-        data: res.data
+        data: {
+          pagination: res.data.pagination,
+          data: res.data.data.map(MapAirport.fromJsonToEntity)
+        }
       };
    
   }

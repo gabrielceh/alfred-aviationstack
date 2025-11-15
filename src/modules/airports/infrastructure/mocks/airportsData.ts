@@ -1,4 +1,4 @@
-import { Airport } from "@/modules/airports/domain/entities";
+import { AirportResponse } from "@/modules/airports/infrastructure/models";
 
 export const AIRPORTS_DATA = [
     {
@@ -107377,4 +107377,4 @@ export const AIRPORTS_DATA = [
       "phone_number": null,
       "timezone": "America/Sao_Paulo"
     }
-] as const satisfies readonly Airport[];
+] as const satisfies readonly AirportResponse[];

@@ -12,6 +12,15 @@
   z-index: -1;
   min-width: 100%;
   min-height: 100dvh;
+  height: 100%;
   background-color: var(--color-background);
   opacity: 0.8;
+}
+
+.mainContent{
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  width: 100%;
+
 }

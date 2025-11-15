@@ -40,7 +40,15 @@ export class AirportRepositoryImpl implements AirportRepository {
    * @returns Una promesa que se resuelve con un arreglo de
    *          aeropuertos que coinciden con el término.
    */
-  async search(query: string, options?: {offset: number, limit?: number}): Promise<ApiResponse<ApiAirportResponse | null>> {
+  async search(query: string, options?: {offset: number, limit?: number}): Promise<ApiResponse<ApiAirportResponse<Airport> | null>> {
+    const parsedLimit = Number(options?.limit);
+    const parsedOffset = Number(options?.offset);
+
+    if(Number.isNaN(parsedLimit) || Number.isNaN(parsedOffset)) return {
+      message: 'Parámetros de búsqueda inválidos',
+      status: "error",
+      data: null
+    };
     return this.datasource.search(query, options);
   }
 

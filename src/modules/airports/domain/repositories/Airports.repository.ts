@@ -24,7 +24,7 @@ export interface AirportRepository {
    * @returns Una promesa que se resuelve con un arreglo de entidades
    *          `ApiAirportResponse` que coinciden con el criterio.
    */
-  search: (query: string, options?: {offset: number, limit?: number}) => Promise<ApiResponse<ApiAirportResponse | null>>;
+  search: (query: string, options?: {offset: number, limit?: number}) => Promise<ApiResponse<ApiAirportResponse<Airport> | null>>;
 
   /**
    * Obtiene un aeropuerto por su identificador único dentro del sistema.

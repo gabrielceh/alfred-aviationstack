@@ -23,7 +23,7 @@ export interface AirportDataSource {
    * @returns Una promesa que se resuelve en un arreglo de objetos
    *          `ApiAirportResponse` que cumplen con el criterio de búsqueda.
    */
-  search: (query: string, options?: {offset: number, limit?: number}) => Promise<ApiResponse<ApiAirportResponse | null>>;
+  search: (query: string, options?: {offset: number, limit?: number}) => Promise<ApiResponse<ApiAirportResponse<Airport> | null>>;
 
    /**
    * Obtiene un aeropuerto específico por su identificador único.
