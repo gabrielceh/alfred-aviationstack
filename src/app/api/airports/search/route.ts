@@ -1,11 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ApiResponse, ErrorResponse } from "@/core/types";
+import { ApiAirportResponse, ApiResponse } from "@/core/types";
 import { AIRPORTS_DATA } from "@/modules/airports/infrastructure/mocks";
 
 
 const airportsData = [...AIRPORTS_DATA];
 
-export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse | ErrorResponse>> {
+export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<ApiAirportResponse>>> {
   try {
     const { searchParams } = new URL(request.url);
     
@@ -18,10 +18,11 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
     if (offset < 0 || limit < 1 || limit > 100) {
       return NextResponse.json(
         { 
-          error: 'Invalid parameters',
-          message: 'offset must be >= 0, limit must be between 1 and 100'
+          status: "error",
+          message: 'Parámetros de búsqueda inválidos',
+          data: null
         },
-        { status: 400 }
+        {status: 400}
       );
     }
 
@@ -48,7 +49,7 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
     const paginatedAirports = filteredAirports.slice(offset, offset + limit);
 
     // Preparar respuesta
-    const response: ApiResponse = {
+    const dataResponse: ApiAirportResponse = {
       pagination: {
         offset,
         limit,
@@ -56,6 +57,12 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
         total,
       },
       data: paginatedAirports
+    };
+    
+    const response: ApiResponse<ApiAirportResponse> = {
+      status: "success",
+      message: "Operación realizada correctamente",
+      data: dataResponse
     };
 
     return NextResponse.json(response, { 
@@ -71,8 +78,9 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
     
     return NextResponse.json(
       { 
-        error: 'Internal server error',
-        message: errorMessage 
+        message: errorMessage,
+        status: "error",
+        data:null
       },
       { status: 500 }
     );

@@ -1,11 +1,13 @@
-import { HeaderSearchPage } from "@/modules/airports/presentation/components";
+import { ContainerCardsAirport, HeaderSearchPage } from "@/modules/airports/presentation/components";
 
-export default function page() {
+export default async function SearchPageProps() {
 
 
   return (
-    <div>
+    <div className="flex flex-col w-full gap-16">
       <HeaderSearchPage/>
+
+      <ContainerCardsAirport/>
     </div>
   )
 }

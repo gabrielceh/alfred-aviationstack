@@ -1,6 +1,7 @@
 import { AirportRepository } from "@/modules/airports/domain/repositories/Airports.repository";
 import { AirportDataSource } from "../../domain/datasources";
 import { Airport } from "../../domain/entities";
+import { ApiAirportResponse, ApiResponse } from "@/core/types";
 
 /**
  * Implementación concreta del `AirportRepository` que utiliza un
@@ -31,13 +32,16 @@ export class AirportRepositoryImpl implements AirportRepository {
   /**
    * Delegación directa de la búsqueda de aeropuertos al datasource.
    *
-   * @param query - Texto a buscar.
+   * @param query - Texto de búsqueda a comparar contra los datos
+   *                del aeropuerto.
+   * @param offset - Índice de inicio de la página.
+   * @param limit - Cantidad de elementos por página.
    *
    * @returns Una promesa que se resuelve con un arreglo de
    *          aeropuertos que coinciden con el término.
    */
-  async search(query: string): Promise<Airport[]> {
-    return this.datasource.search(query);
+  async search(query: string, options?: {offset: number, limit?: number}): Promise<ApiResponse<ApiAirportResponse | null>> {
+    return this.datasource.search(query, options);
   }
 
 
@@ -49,7 +53,7 @@ export class AirportRepositoryImpl implements AirportRepository {
    * @returns Una promesa que se resuelve con la entidad `Airport`
    *          correspondiente, o `null` si no se encuentra.
    */
-  async getAirportById(id: string): Promise<Airport | null> {
+  async getAirportById(id: string): Promise<ApiResponse<Airport | null>> {
     return this.datasource.getAirportById(id);
   }
 

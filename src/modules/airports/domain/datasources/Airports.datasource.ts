@@ -1,3 +1,4 @@
+import { ApiAirportResponse, ApiResponse } from "@/core/types";
 import { Airport } from "../entities";
 
 /**
@@ -16,12 +17,14 @@ export interface AirportDataSource {
    *
    * @param query - Texto de búsqueda a comparar contra los datos
    *                del aeropuerto.
+   * @param offset - Índice de inicio de la página.
+   * @param limit - Cantidad de elementos por página.
    *
    * @returns Una promesa que se resuelve en un arreglo de objetos
-   *          `Airport` que cumplen con el criterio de búsqueda.
+   *          `ApiAirportResponse` que cumplen con el criterio de búsqueda.
    */
-  search: (query: string) => Promise<Airport[]>;
-  
+  search: (query: string, options?: {offset: number, limit?: number}) => Promise<ApiResponse<ApiAirportResponse | null>>;
+
    /**
    * Obtiene un aeropuerto específico por su identificador único.
    *
@@ -30,5 +33,5 @@ export interface AirportDataSource {
    * @returns Una promesa que se resuelve en un objeto `Airport`
    *          si se encuentra, o `null` en caso contrario.
    */
-  getAirportById: (id: string) => Promise<Airport |  null>;
+  getAirportById: (id: string) => Promise<ApiResponse<Airport |  null>>;
 }

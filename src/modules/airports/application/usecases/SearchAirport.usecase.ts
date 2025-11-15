@@ -1,4 +1,4 @@
-import { Airport } from "@/modules/airports/domain/entities";
+import { ApiAirportResponse, ApiResponse } from "@/core/types";
 import { AirportRepository } from "@/modules/airports/domain/repositories/Airports.repository";
 
 /**
@@ -27,12 +27,15 @@ export class SearchAirportUsecase  {
    * Ejecuta la operación de búsqueda de aeropuertos según el término
    * proporcionado.
    *
-   * @param query - Texto a buscar (puede ser nombre, IATA, ciudad, etc.)
+   * @param query - Texto de búsqueda a comparar contra los datos
+   *                del aeropuerto.
+   * @param offset - Índice de inicio de la página.
+   * @param limit - Cantidad de elementos por página.
    *
    * @returns Una promesa que se resuelve con un arreglo de aeropuertos
    *          que coinciden con el criterio.
    */
-  async execute(query: string): Promise<Airport[]> {
-    return this.repository.search(query);
+  async execute(query: string, options?: {offset: number, limit?: number}): Promise<ApiResponse<ApiAirportResponse | null>> {
+    return this.repository.search(query, options);
   }
 }

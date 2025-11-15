@@ -1,7 +1,5 @@
-import { Airport } from "@/modules/airports/domain/entities";
-import { PaginationResponse } from "./PaginationResponse.interface";
-
-export interface ApiResponse {
-  pagination: PaginationResponse;
-  data: Airport[];
+export interface ApiResponse<T> {
+  status: "success" | "error";
+  message: string;
+  data: T | null;
 }

@@ -1,3 +1,4 @@
+import { ApiResponse } from "@/core/types";
 import { Airport } from "@/modules/airports/domain/entities";
 import { AirportRepository } from "@/modules/airports/domain/repositories/Airports.repository";
 
@@ -28,7 +29,7 @@ export class GetAirportByIdUsecase {
    * @returns Una promesa que se resuelve con la entidad `Airport` si
    *          existe, o `null` si no se encuentra.
    */
-  async execute(id: string): Promise<Airport | null> {
+  async execute(id: string): Promise<ApiResponse<Airport | null>> {
     return this.repository.getAirportById(id);
   }
 }
