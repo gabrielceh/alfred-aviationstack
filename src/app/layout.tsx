@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import styles from "./layout.module.css";
+import clsx from "clsx";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
@@ -29,11 +31,14 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={clsx(geistSans.variable, geistMono.variable, styles.container, "antialiased")}
       >
-        <Providers>
-          {children}
-        </Providers>
+        <div className={styles.background}></div>
+        <div className="mx-auto w-full max-w-[350px] sm:max-w-[550px] md:max-w-[680px] lg:max-w-[980px]  xl:max-w-7xl">
+          <Providers>
+            {children}
+          </Providers>
+        </div>
       </body>
     </html>
   );

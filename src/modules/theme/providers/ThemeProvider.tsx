@@ -13,11 +13,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const root = document.documentElement;
     console.log(theme);
     if (theme === "dark") {
-      root.style.setProperty("--background", "#0a0a0a");
+      root.style.setProperty("--background", "#0A162D");
       root.style.setProperty("--foreground", "#ededed");
     } else {
-      root.style.setProperty("--background", "#ffffff");
-      root.style.setProperty("--foreground", "#171717");
+      root.style.setProperty("--background", "#ededed");
+      root.style.setProperty("--foreground", "#0A162D");
     }
   }, [theme, hasHydrated]);
 
