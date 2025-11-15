@@ -1,1 +1,2 @@
-export * from './SearchForm/SearchForm';
+export * from './SearchAirportForm/SearchAirportForm';
+export * from './search/HeaderSearchPage/HeaderSearchPage';
