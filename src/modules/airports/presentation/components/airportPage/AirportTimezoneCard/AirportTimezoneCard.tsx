@@ -40,7 +40,7 @@ export  function AirportTimezoneCard({airport}:AirportTimezoneCardProps) {
         <HeaderCardAirportIcon text="Hora local" icon={<ClockCircleIcon width={32} height={32}/>}/>
   
         <section className="flex flex-col gap-4">
-          <p className="text-xl text-white">{dateTimeToShow}</p>
+          <p className="text-xl">{dateTimeToShow}</p>
         </section>
       </CardLayout>
     </div>

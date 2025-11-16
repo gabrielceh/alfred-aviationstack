@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Providers from "./providers";
+import { ThemeToggle } from "@/modules/theme/presentation/components";
 
 
 const geistSans = Geist({
@@ -30,7 +31,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={clsx(geistSans.variable, geistMono.variable, styles.container, "antialiased")}
+        className={clsx(geistSans.variable, geistMono.variable, styles.container, "antialiased relative")}
       >
         <div className={styles.background}></div>
         <div className={clsx("mx-auto px-4 w-full sm:max-w-[550px] md:max-w-[680px] lg:max-w-[980px]  xl:max-w-7xl", styles.mainContent)}>
@@ -40,6 +41,9 @@ export default function RootLayout({
           <footer className="py-8 px-8 text-center">
             <p>Made with ❤️ by <a href="https://github.com/gabrielceh" target="_blank" rel="noreferrer">Gabriel Cervantes Hurtado</a></p>
           </footer>
+        </div>
+        <div className="fixed bottom-10 right-10">
+          <ThemeToggle/>
         </div>
       </body>
     </html>

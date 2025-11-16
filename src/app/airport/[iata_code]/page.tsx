@@ -11,7 +11,20 @@ interface AirportPageProps {
   }>;
 }
 
+export async function generateMetadata(
+  { params }: AirportPageProps,
+): Promise<Metadata> {
+  const { iata_code } = await params;
+  const res = await fetch(`${environments.serverUrl}/api/airports/airport/${iata_code}`);
+  if (!res.ok) return notFound();
+  
+  const data = await res.json();
+  if (!data?.data) return notFound();
 
+  return {
+    title: `${data.data.airport_name} - SkyConnect Explorer`,
+  };
+}
 
 export default async function AirportPage({params}:AirportPageProps) {
   const { iata_code } = await params;

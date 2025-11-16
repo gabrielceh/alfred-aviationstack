@@ -4,11 +4,49 @@ import clsx from "clsx";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface PaginationProps {
+  /**
+   * Índice del primer elemento de la página actual.
+   * Generalmente recibido desde la API.
+   */
   offset: number;
+
+  /**
+   * Número máximo de elementos por página.
+   */
   limit: number;
+
+  /**
+   * Total de elementos disponibles.
+   */
   total: number;
 }
 
+/**
+ * Componente de paginación basado en `offset` y `limit`, compatible con Next.js 13+ (App Router).
+ * Actualiza automáticamente la URL mediante `router.push` y mantiene los parámetros existentes.
+ *
+ * Renderiza:
+ * - Botón **Anterior**
+ * - Botones numéricos para cada página
+ * - Botón **Siguiente**
+ *
+ * ##Cómo calcula la página actual
+ * ```ts
+ * currentPage = Math.floor(offset / limit) + 1
+ * ```
+ *
+ * ## Cómo actualiza la URL
+ * - Usa `URLSearchParams` para no perder otros parámetros de búsqueda.
+ * - Actualiza `offset` y `limit`.
+ * - Navega mediante `router.push`.
+ *
+ * ## Ejemplo de uso:
+ * ```tsx
+ * <Pagination offset={0} limit={10} total={87} />
+ * ```
+ *
+ * @param props - Propiedades necesarias para calcular la paginación.
+ */
 export function Pagination({ offset, limit, total }: PaginationProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -32,9 +70,9 @@ export function Pagination({ offset, limit, total }: PaginationProps) {
       <button
         onClick={() => goToPage(currentPage - 1)}
         disabled={currentPage === 1}
-        className="px-3 py-1 bg-gray-800 text-white rounded disabled:opacity-20 cursor-pointer"
+        className="px-3 py-1 bg-dark-blue text-white rounded disabled:opacity-50 cursor-pointer"
       >
-        ←
+        Anterior
       </button>
 
       {/* Numeric pages */}
@@ -47,8 +85,8 @@ export function Pagination({ offset, limit, total }: PaginationProps) {
             <button
               key={page}
               onClick={() => goToPage(page)}
-              className={clsx("px-3 py-1 rounded text-white] cursor-pointer", 
-                isActive ? "bg-slate-800 text-white" : "bg-slate-500"
+              className={clsx("px-3 py-1 rounded text-white cursor-pointer", 
+                isActive ? "bg-light-blue" : "bg-dark-blue" 
               )}
             >
               {page}
@@ -61,9 +99,9 @@ export function Pagination({ offset, limit, total }: PaginationProps) {
       <button
         onClick={() => goToPage(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="px-3 py-1 bg-gray-800 text-white rounded disabled:opacity-40 cursor-pointer"
+        className="px-3 py-1 bg-dark-blue text-white rounded disabled:opacity-40 cursor-pointer"
       >
-        →
+        Siguiente
       </button>
     </div>
   );
