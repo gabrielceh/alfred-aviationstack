@@ -37,7 +37,7 @@ export default function RootLayout({
           <Providers>
             {children}
           </Providers>
-          <footer className="py-8 text-center">
+          <footer className="py-8 px-8 text-center">
             <p>Made with ❤️ by <a href="https://github.com/gabrielceh" target="_blank" rel="noreferrer">Gabriel Cervantes Hurtado</a></p>
           </footer>
         </div>

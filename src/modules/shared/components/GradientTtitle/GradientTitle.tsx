@@ -18,7 +18,7 @@ export const GradientTitle: FC<GradientTitleProps> = ({
 }) => {
   return (
     <Tag
-      className={clsx("bg-linear-to-r", gradientFrom, gradientTo, "bg-clip-text text-transparent tracking-tight",className)}
+      className={clsx("bg-linear-to-r", gradientFrom, gradientTo, "bg-clip-text text-transparent tracking-tight", className)}
     >
       {children}
     </Tag>

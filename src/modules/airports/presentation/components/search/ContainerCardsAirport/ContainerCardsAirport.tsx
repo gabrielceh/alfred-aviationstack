@@ -1,7 +1,6 @@
 "use client";
-import {  useMemo, useState } from 'react';
+import {  useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Airport } from '@/modules/airports/domain/entities';
 import { useSearchAirportQuert } from '@/modules/airports/presentation/hooks';
 
 import { Error, Loader, Pagination } from '@/modules/shared/components';
