@@ -42,7 +42,7 @@ export default function RootLayout({
             <p>Made with ❤️ by <a href="https://github.com/gabrielceh" target="_blank" rel="noreferrer">Gabriel Cervantes Hurtado</a></p>
           </footer>
         </div>
-        <div className="fixed bottom-10 right-10">
+        <div className="fixed bottom-5 right-5 z-9999">
           <ThemeToggle/>
         </div>
       </body>

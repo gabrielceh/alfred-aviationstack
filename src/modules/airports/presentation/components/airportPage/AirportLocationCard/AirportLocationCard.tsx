@@ -31,7 +31,7 @@ export function AirportLocationCard({airport}:AirportLocationProps) {
         </section>
       </CardLayout>
 
-      {airport.latitude && airport.longitude && <div className="h-[500px]">
+      {airport.latitude && airport.longitude && <div className="h-[500px] rounded-lg overflow-hidden">
         <Map position={[Number(airport.latitude), Number(airport.longitude)]} zoom={14} tooltipLabel={`${airport.iataCode} - ${airport.airportName}`}/>
       </div>}
     </div>

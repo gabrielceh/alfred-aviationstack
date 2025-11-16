@@ -43,7 +43,7 @@ export  function AirportContainer({airport}:AirportContentProps) {
 
 
   return (
-    <main>
+    <main className="w-full overflow-hidden">
       <Tabs items={tabItems} selectedTabValue={selectedTabValue} onChange={onHanldeTabChange}/>
     </main>
   )

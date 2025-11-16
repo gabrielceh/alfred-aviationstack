@@ -17,7 +17,7 @@ export async function generateMetadata(
   const { iata_code } = await params;
   const res = await fetch(`${environments.serverUrl}/api/airports/airport/${iata_code}`);
   if (!res.ok) return notFound();
-  
+
   const data = await res.json();
   if (!data?.data) return notFound();
 

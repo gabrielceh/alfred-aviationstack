@@ -66,7 +66,7 @@ export function Tabs({items, selectedTabValue, onChange}: TabsProps) {
   return (
     <div className="flex flex-col gap-16">
       <section className={clsx(
-        "w-full flex justify-between gap-2 py-1.5 px-3 rounded-sm",
+        "w-full flex justify-between gap-2 py-1.5 px-3 rounded-sm flex-wrap sm:flex-nowrap",
         theme === "light" ? "bg-slate-300" : "bg-slate-700"
       )}>
         {
