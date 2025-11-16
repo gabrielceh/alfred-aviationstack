@@ -1,36 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Alfred Airport Search — Prueba Técnica
 
-## Getting Started
+Aplicación desarrollada como prueba técnica para Alfred, construida con Next.js, TailwindCSS, Zustand, TanStack Query, y siguiendo una Arquitectura Hexagonal completamente modular.
 
-First, run the development server:
+Permite buscar aeropuertos por nombre o código IATA, visualizar un listado de aeropuertos, ver el detalle de un aeropuerto, incluyendo su ubicación en el mapa utilizando Leaflet.
+
+---
+
+## Setup del proyecto
+
+1. Clona el repositorio:
+
+```bash
+git clone https://github.com/gabrielceh/alfred-aviationstack.git
+```
+
+2. Instala las dependencias:
+
+```bash
+npm install
+```
+
+3. Agrega las variables de entorno:
+
+```env
+SERVER_URL = http://localhost:3000
+```
+
+4. Ejecuta el proyecto:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tecnologías principales
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js 14 (App Router)
+- TypeScript
+- TailwindCSS
+- Zustand — Estado global (incluye historial de búsqueda)
+- TanStack Query — Data fetching en componentes cliente
+- Leaflet + React Leaflet — Mapas
+- Arquitectura Hexagonal
+- Jest + React Testing Library — Pruebas unitarias y de componentes
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Arquitectura y estructura del proyecto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El proyecto implementa Arquitectura Hexagonal para mantener una separación limpia entre:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Domain → Interfaces, entidades, lógica de negocio
 
-## Deploy on Vercel
+Application → Casos de uso (aplicación)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Infrastructure → Datasources, mappers, repositorios concretos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Presentation → Componentes, páginas, hooks, layouts
+
+---
+
+## Funcionalidades
+
+### Búsqueda de aeropuertos
+
+Búsqueda por nombre o código IATA
+
+Resultados con paginación
+
+### Listado de aeropuertos
+
+Visualización completa de aeropuertos obtenidos desde la API
+
+Adaptado a UI con TailwindCSS
+
+### Detalle del aeropuerto
+
+Vista con información detallada
+
+Mapa interactivo usando Leaflet
+
+### Arquitectura Hexagonal
+
+Separación clara entre dominio, infraestructura y presentación
+
+Interfaces en dominio para aislar dependencias
+
+Repositorios inyectados en casos de uso
+
+### Testing
+
+Pruebas con Jest + React Testing Library
+
+Tests para componentes.
+
+---
+
+## Scripts útiles
+
+```bash
+npm run dev         # Modo desarrollo
+npm run build       # Build producción
+npm run start       # Servidor de producción
+npm run test        # Ejecutar tests con Jest
+```
+
+---
+
+## Estilos
+
+Implementado completamente con TailwindCSS
+
+Tema centralizado en theme/
+
+Componentes desacoplados en shared/ y modules/*/presentation/components
