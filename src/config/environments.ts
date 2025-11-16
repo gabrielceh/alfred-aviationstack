@@ -1,8 +1,7 @@
-import 'dotenv/config';
-
 const requiredEnvVars = [
   'API_URL',
   'API_KEY',
+  'SERVER_URL',
 
 ];
 
@@ -17,6 +16,7 @@ for (const varName of requiredEnvVars) {
 const environments = {
   apiUrl: process.env.API_URL || "",
   apiKey: process.env.API_KEY || "",
+  serverUrl: process.env.SERVER_URL || "",
 };
 
 export {environments};

@@ -13,7 +13,7 @@ interface CardAirportProps {
 export  function CardAirport({airport}:CardAirportProps) {
   return (
     <CardLayout>
-      <Link href={`/airport/${airport.id}`}>
+      <Link href={`/airport/${airport.iataCode}`}>
         <div className="w-full h-full flex flex-col justify-between relative z-10">
           <div>
             <header className="flex justify-between items-center">

@@ -41,18 +41,29 @@ export class ApiAirportDataSource implements AirportDataSource{
   }
 
   async getAirportById(id: string): Promise<ApiResponse<Airport | null>> {
-    try {
+    if(!id){
+        return {
+          message: 'Sin id',
+          status: "error",
+          data: null
+        };
+      }
+
+      const res = await performApiRequest<AirportResponse>({
+        path: `/airport/${id}`,
+        method: 'get',
+        errorMessage: 'Error al buscar aeropuertos'
+      });
+
+      if(!res.data){
+        throw new Error(res.message);
+      }
+
       return {
         message: 'Operación realizada correctamente',
         status: "success",
-        data: null
+        data: MapAirport.fromJsonToEntity(res.data)
+        
       };
-    } catch (error) {
-      return {
-        message: error instanceof Error ? error.message : 'Error desconocido',
-        status: "error",  
-        data: null
-      };
-    }
   }
 }
