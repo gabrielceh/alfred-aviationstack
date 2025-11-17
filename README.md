@@ -2,7 +2,7 @@
 
 Aplicación desarrollada como prueba técnica para Alfred, construida con Next.js, TailwindCSS, Zustand, TanStack Query, y siguiendo una Arquitectura Hexagonal completamente modular.
 
-Permite buscar aeropuertos por nombre o código IATA, visualizar un listado de aeropuertos, ver el detalle de un aeropuerto, incluyendo su ubicación en el mapa utilizando Leaflet.
+Permite buscar aeropuertos por nombre o código IATA, visualizar un listado de aeropuertos, ver el detalle de un aeropuerto, incluyendo su ubicación en el mapa utilizando Leaflet, y mantener un historial de búsqueda gestionado desde el frontend.
 
 ---
 
@@ -20,10 +20,12 @@ git clone https://github.com/gabrielceh/alfred-aviationstack.git
 npm install
 ```
 
-3. Agrega las variables de entorno:
+3. Agrega las variables de entorno en un archivo `.env`:
 
 ```env
-SERVER_URL = http://localhost:3000
+SERVER_URL = http://localhost:PUERTO
+API_URL = "https://api.aviationstack.com/v1"
+API_KEY = "your_api_key"
 ```
 
 4. Ejecuta el proyecto:
@@ -65,35 +67,30 @@ Presentation → Componentes, páginas, hooks, layouts
 
 ### Búsqueda de aeropuertos
 
-Búsqueda por nombre o código IATA
-
-Resultados con paginación
+- Búsqueda por nombre o código IATA
+- Resultados con paginación
+- Historial de búsqueda usando Zustand
 
 ### Listado de aeropuertos
 
-Visualización completa de aeropuertos obtenidos desde la API
-
-Adaptado a UI con TailwindCSS
+- Visualización completa de aeropuertos obtenidos desde la API
+- Adaptado a UI con TailwindCSS
 
 ### Detalle del aeropuerto
 
-Vista con información detallada
-
-Mapa interactivo usando Leaflet
+- Vista con información detallada
+- Mapa interactivo usando Leaflet
 
 ### Arquitectura Hexagonal
 
-Separación clara entre dominio, infraestructura y presentación
-
-Interfaces en dominio para aislar dependencias
-
-Repositorios inyectados en casos de uso
+- Separación clara entre dominio, infraestructura y presentación
+- Interfaces en dominio para aislar dependencias
+- Repositorios inyectados en casos de uso
 
 ### Testing
 
-Pruebas con Jest + React Testing Library
-
-Tests para componentes.
+- Pruebas con Jest + React Testing Library
+- Tests para componentes.
 
 ---
 
@@ -110,8 +107,6 @@ npm run test        # Ejecutar tests con Jest
 
 ## Estilos
 
-Implementado completamente con TailwindCSS
-
-Tema centralizado en theme/
-
-Componentes desacoplados en shared/ y modules/*/presentation/components
+- Implementado con TailwindCSS y module css
+- Tema centralizado en theme/
+- Componentes desacoplados en modules/*/presentation/components

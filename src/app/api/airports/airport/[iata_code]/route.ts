@@ -4,7 +4,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { getAirportsData } from "../../utils/getAirportData";
 
 
-
 export async function GET(
   _request: NextRequest, 
   { params }: { params: Promise<{ iata_code: string }>}

@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { ApiAirportResponse, ApiResponse } from "@/core/types";
-import { AIRPORTS_DATA } from "@/modules/airports/infrastructure/mocks";
 import { AirportResponse } from "@/modules/airports/infrastructure/models";
 import { getAirportsData } from "../utils/getAirportData";
 
-
-// const airportsData = [...AIRPORTS_DATA];
 
 export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<ApiAirportResponse<AirportResponse>>>> {
   try {
@@ -39,9 +36,9 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
       filteredAirports = airportsData.data.filter((airport) => {
         const nameMatch = airport.airport_name?.toLowerCase().includes(searchLower);
         const iataMatch = airport.iata_code?.toLowerCase().includes(searchLower);
-        const cityMatch = airport.city_iata_code?.toLowerCase().includes(searchLower);
+        // const cityMatch = airport.city_iata_code?.toLowerCase().includes(searchLower);
         
-        return nameMatch || iataMatch || cityMatch;
+        return nameMatch || iataMatch;
       });
     }
 
