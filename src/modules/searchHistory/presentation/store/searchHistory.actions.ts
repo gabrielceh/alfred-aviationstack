@@ -1,4 +1,5 @@
 export interface SearchHistoryActions {
   setHasHydrated(value: boolean): void;
-  setItems(items: string[]): void;
+  addItem(item: string): void;
+  deleteItems(item: string): void;
 }
