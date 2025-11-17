@@ -1,7 +1,7 @@
 import { createAxiosInstance } from './axiosInstance';
 
 export class AxiosService  {
-    private static baseURL: string = "/api/airports";
+    private static baseURL: string = "/api";
     private static instance = createAxiosInstance(this.baseURL);
 
   static async get({  path, signal }: { path: string; signal?: AbortSignal }) {

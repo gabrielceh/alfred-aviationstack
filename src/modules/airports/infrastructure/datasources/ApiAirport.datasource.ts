@@ -20,7 +20,7 @@ export class ApiAirportDataSource implements AirportDataSource{
       const limit = options?.limit || 10;
 
       const res = await performApiRequest<ApiAirportResponse<AirportResponse>>({
-        path: `/search?search=${query}&offset=${offset}&limit=${limit}`,
+        path: `/airports/search?search=${query}&offset=${offset}&limit=${limit}`,
         method: 'get',
         errorMessage: 'Error al buscar aeropuertos'
       });
@@ -50,7 +50,7 @@ export class ApiAirportDataSource implements AirportDataSource{
       }
 
       const res = await performApiRequest<AirportResponse>({
-        path: `/airport/${id}`,
+        path: `/airports/airport/${id}`,
         method: 'get',
         errorMessage: 'Error al buscar aeropuertos'
       });
