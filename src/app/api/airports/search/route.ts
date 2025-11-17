@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { ApiAirportResponse, ApiResponse } from "@/core/types";
 import { AIRPORTS_DATA } from "@/modules/airports/infrastructure/mocks";
 import { AirportResponse } from "@/modules/airports/infrastructure/models";
+import { getAirportsData } from "../utils/getAirportData";
 
 
-const airportsData = [...AIRPORTS_DATA];
+// const airportsData = [...AIRPORTS_DATA];
 
 export async function GET(request: NextRequest): Promise<NextResponse<ApiResponse<ApiAirportResponse<AirportResponse>>>> {
   try {
@@ -14,6 +15,8 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
     const search = searchParams.get('search') || '';
     const offset = parseInt(searchParams.get('offset') || '0');
     const limit = parseInt(searchParams.get('limit') || '10');
+
+    const airportsData = await getAirportsData();
 
     // Validar parámetros
     if (offset < 0 || limit < 1 || limit > 100) {
@@ -28,12 +31,12 @@ export async function GET(request: NextRequest): Promise<NextResponse<ApiRespons
     }
 
     // Filtrar aeropuertos por búsqueda
-    let filteredAirports = airportsData;
+    let filteredAirports = airportsData.data;
 
     if (search) {
       const searchLower = search.toLowerCase().trim();
       
-      filteredAirports = airportsData.filter((airport) => {
+      filteredAirports = airportsData.data.filter((airport) => {
         const nameMatch = airport.airport_name?.toLowerCase().includes(searchLower);
         const iataMatch = airport.iata_code?.toLowerCase().includes(searchLower);
         const cityMatch = airport.city_iata_code?.toLowerCase().includes(searchLower);

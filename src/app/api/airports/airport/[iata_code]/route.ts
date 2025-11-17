@@ -1,9 +1,9 @@
 import { ApiResponse } from "@/core/types";;
-import { AIRPORTS_DATA } from "@/modules/airports/infrastructure/mocks";
 import { AirportResponse } from "@/modules/airports/infrastructure/models";
 import { NextRequest, NextResponse } from "next/server";
+import { getAirportsData } from "../../utils/getAirportData";
 
-const airportsData = [...AIRPORTS_DATA];
+
 
 export async function GET(
   _request: NextRequest, 
@@ -12,8 +12,9 @@ export async function GET(
 
   try {
     const { iata_code } = await params;
+    const airportsData = await getAirportsData();
 
-    const airport = airportsData.find((airport) => airport.iata_code === iata_code);
+    const airport = airportsData.data.find((airport) => airport.iata_code === iata_code);
 
     if(!airport) return NextResponse.json(
       { 
