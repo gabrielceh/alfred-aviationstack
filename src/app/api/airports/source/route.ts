@@ -47,7 +47,7 @@ export async function GET() {
   // Guardar cache por 1 hora
   cache = {
     data,
-    expires: now + 60 * 60 * 1000 // 1 hora
+    expires: now + 60 * 60 * 1000 * 24 // 1 día
   };
 
   return Response.json(data);
